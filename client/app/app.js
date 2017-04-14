@@ -8,7 +8,8 @@ import ChatPopup from './components/chatpopup';
 import FeedItem from './components/feeditem';
 import {hideElement} from './util';
 import {searchForFeedItems, deleteFeedItem} from './server';
-import { IndexRoute, Router, Route, hashHistory } from 'react-router'
+import { IndexRoute, Router, Route, hashHistory } from 'react-router';
+import ErrorBanner from './components/errorbanner'
 
 /**
  * A fake profile page.
@@ -137,6 +138,11 @@ class App extends React.Component {
       <div>
         <NavBar searchTerm={searchTerm} />
         <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <ErrorBanner />
+            </div>
+          </div>
           <div className="row">
             <div className="col-md-2 fb-left-sidebar">
               <LeftSideBar />
