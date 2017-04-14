@@ -29,7 +29,7 @@ function getFeedItemSync(feedItemId) {
 
 /**
  * Emulates a REST call to get the feed data for a particular user.
- */
+
 export function getFeedData(user, cb) {
   var userData = readDocument('users', user);
   var feedData = readDocument('feeds', userData.feed);
@@ -39,7 +39,18 @@ export function getFeedData(user, cb) {
   // Return FeedData with resolved references.
   emulateServerReturn(feedData, cb);
 }
-
+ */
+ export function getFeedData(user, cb) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '/user/4/feed');
+  xhr.setRequestHeader('Authorization', 'Bearer jsontokenhere');
+  xhr.addEventListener('load', function() {
+    // Call the callback with the data.
+    cb(JSON.parse(xhr.responseText));
+  });
+  xhr.send();
+}
+ 
 /**
  * Adds a new status update to the database.
  */
